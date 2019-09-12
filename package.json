@@ -1,0 +1,118 @@
+{
+	"name": "treeworld",
+	"displayName": "treeworld",
+	"description": "",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.36.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onView:Manage",
+		"onView:Instance"
+	],
+	"main": "./extension.js",
+	"contributes": {
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "DevOp",
+					"title": "DevOps",
+					"icon": "media/dep.svg"
+				}
+			]
+		},
+		"views": {
+			"DevOp": [
+				{
+					"id": "Manage",
+					"name": "Manage"
+				},
+				{
+					"id": "Instance",
+					"name": "Instances"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "Manage.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "media/refresh.svg",
+					"dark": "media/refresh.svg"
+				}
+			},
+			{
+				"command": "Manage.addEntry",
+				"title": "Add"
+			},
+			{
+				"command": "Instance.refreshEntry",
+				"title": "Refresh",
+				"icon": {
+					"light": "media/refresh.svg",
+					"dark": "media/refresh.svg"
+				}
+			},
+			{
+				"command": "Instance.addEntry",
+				"title": "Add"
+			},
+			{
+				"command": "extension.Submit",
+				"title": "Add"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "Manage.refreshEntry",
+					"when": "view == Manage",
+					"group": "navigation"
+				},
+				{
+					"command": "Manage.addEntry",
+					"when": "view == Manage"
+				},
+				{
+					"command": "Instance.refreshEntry",
+					"when": "view == Instance",
+					"group": "navigation"
+				},
+				{
+					"command": "Instance.addEntry",
+					"when": "view == Instance"
+				}
+			],
+			"view/item/context":[
+				{
+					"command": "Manage.refreshEntry",
+					"when": "view == Manage && viewItem == dependency",
+					"group": "navigation"
+				},
+				{
+					"command": "Manage.addEntry",
+					"when": "view == Manage && viewItem == dependency"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"eslint": "^5.13.0",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	},
+	"dependencies": {
+		"axios": "^0.19.0",
+		"sync-request": "^6.1.0"
+	}
+}
